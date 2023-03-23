@@ -1,0 +1,34 @@
+.unselected_box {
+	-fx-border-color: black;
+	-fx-border-radius: 4;
+	-fx-border-width: 2;
+	-fx-background-radius: 4;
+	-fx-background-color: whitesmoke;
+}
+
+.selected_box {
+	-fx-border-color: black;
+	-fx-border-radius: 4;
+	-fx-border-width: 2;
+	-fx-background-radius: 4;
+	-fx-background-color: lightsteelblue;
+}
+
+.unselected_button {
+	-fx-background-color: lightgray;
+	-fx-border-color: steelblue;
+	-fx-border-radius: 5;
+	-fx-background-radius: 5;
+}
+
+.selected_button {
+	-fx-background-color: slategray;
+	-fx-border-color: slateblue;
+	-fx-border-radius: 5;
+	-fx-background-radius: 5;
+}
+
+.main_menu {
+	-fx-background-image: url(images/backgrounds/light_blue_background.jpg);
+	-fx-background-size: stretch;
+}

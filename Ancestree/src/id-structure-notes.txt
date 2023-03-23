@@ -1,0 +1,151 @@
+id structure:
+
+([letter]:[number])+
+
+a: up a generation
+b: down a generation
+c: sideways (spouse)
+
+maybe have spouses trees greyed out by default, and you can click on the spouse to show it?
+4	5	6	7	11	12	13	14
+    2	    	    3       	    9		    10
+    	    1               		    8
+	    		    0
+
+or
+
+111	112	121	122	211	212	221	222
+    11	    	    12       	    21		    22
+    	    1               		    2		22b1	22b1a0
+	    		    0				   22b1a0b1
+
+
+etc?
+now for b, we'd need to track how many children a person has to make the tree meaningful at all, so instead the number will just be the number of generations down to go.
+So 5 generations down from mother's father would be a:12:b:5
+
+
+sideways values... c for spouse and d for sibling.
+to make a number meaningful we'd need to differentiate between ie. 12's 2 daughters. meaning we'd need to have a count of the person's children in their id... which is what we're trying to avoid.
+
+maybe we do multiple passes through the screen
+-first one from user up to top and user to bottom, set row index for person- gives count of people per row
+-next one sets column constraints per column- so if there's 3 people in a row each one has a third of the total width, compared to 2 in a row where they get half
+	constraint depends on previous rows. parent connector should always be centred directly above one child if they have an odd number, or space between two if they have an even number.
+-next one places people in their column
+-next one creates connectors- needs to be robust to account for different 
+	ie. place connector link between two parents, then from centre you 
+
+
+constraints of program
+-people can only have 1 spouse
+-if people have at least one child, they must have a spouse. no single parents
+
+steps to follow from diagram PW01:
+1- get people per row, from user up
+	5 (user, sibling+spouse, cousin+spouse)
+	4 (parents, paternal pibling+spouse, paternal pibling)
+	4 (maternal grandparents, paternal grandparents)
+2- get people per row below user
+	3 (child, sibling's 2 children)
+3- build number of columns based on row values, from the bottom up
+	3 columns- 1 per child/nibling
+	5 columns- nibling's parents, user, cousin+spouse
+		other columns can be added to the end
+
+
+alt steps
+1- get the highest level people (furthest back)
+2- build number of columns based on row values, from the top down 
+number of columns = x
+	x = num people in top row
+	x = for each parent: get children count (spouses count as child)
+		if count = 1, 		x += 1
+		if count is odd && >1, 	x += count
+		if count is even, 	x += (count-2)
+
+	x=
+		if count = 1 or 2, no change
+		if count = 3, x+3
+		if count = 4, x+2
+		if count = 5, x+5
+		if count = 6, x+4
+	repeat until last row
+for this it would be best for people to have their children's IDs in an array so it can be reached easily
+
+maybe after the id number, since it only gets set to 1 or 2, use letters for siblings
+so siblings for father would be 23, 24, etc
+my siblings would then be 03, 04, etc (or maybe just using 3, 4 would make sense)
+then spouses are with a '0' at the end
+so uncle's wife is 230
+then 23's children are 23a, 23b
+then their children are 23aa, 23ab, 23ba, 23bb, etc
+then my children are a, b, etc
+
+or maybe
+spouses are denoted by ':x' after id
+child IDs are made by getting spouse ID (so '[id]:x') and adding a letter
+ie fathers brother is 23, his wife is 23:0, their kids are 23:0:a, 23:0:b, etc
+then he could have another wife, 23:1, with kids 23:1:a etc
+then his kids have spouses like 23:0:a:0 and their kids are 23:0:a:0:a, 23:0:a:0:b etc
+so after the colon:
+	number is an int that will increase for each spouse
+	letter is a char that will increment through alphabet for each child
+
+or...
+
+23:a0:b0:a0:b0
+a means spouse, b means child
+so 23:a0 is spouse 0, 23:a0:b0 and 23:a0:b1 are their children, 23:a0:b1:a1 is the uncle's child's second wife
+
+ultimately, the part of the ID before the colon is the blood relation, the part after is an identifier attached to the closest blood relative of the user
+
+
+notes after thinking about it for a while:
+- multiple marriages- add one row between person and the generation below them for each marriage
+- only use colons after a letter and if the next one isn't a letter, to show when the number ends, or to show when the direct blood line ends. ie instead of 23:a0:12:a1:b2 use 2:3a0:12a1b2
+- don't use colon on the end of an id
+- for direct descendants: ids will start 0a[int]b[int]{etc}.
+
+rules:
+-non-directly-related people (spouses) dont have their children in their array, they are connected to the blood relative by the '0' at the end of the id and the blood relative has the array
+-blood ancestors both have their children's arrays, and are allowed 
+
+restrictions:
+- people must have two parents
+- strictly genetic-based tree, no adoptions would work
+
+
+2112:2a1:21121:0a0b0a0b0a0b0
+
+another change to structure- now to refer to children you have to always specify the spouse, so no need for colons anymore?
+only exception is for uncles/great aunts/etc, where the person is a sibling of a blood relative
+can tell if thats the case because a 'b' will be right after the initial streak of 1's and 2's
+so uncle is 22b1 or 21b1- need to decide on a concrete rule for this- lets just go with always using the side that the person's already on. ie if 
+its on your dads side then your uncle is 22b1, or on your mums side it's 11b1.
+
+
+so uncle on dads side is 22b1, his wife is 22b1a0, their kids are 22b1a0b0, 22b1a0b1 etc
+but... your uncles wifes father is then 22b1a01. maybe we do need something else there to break that up- lets use c for now
+so now he's 22b1a0c1, and that can go on to c1212211121 etc
+
+
+actual profile (delete the rest when needed)
+[id],[fName],[lName],[dob],[dod],[numSpouses],[numChildren]
+====
+basic:
+0,Geoffrey,Lawson,10/08/1998
+1,Bronwyn,Chompff,3/1/1984
+2,Josh,Lawson,10/7/1979
+11,Heather,Chompff,7/8/1965
+12,Albert,Chompff,5/6/1955
+21,Leslie,Nielsen,4/3/1960
+22,Terry,Lawson,5/4/1950
+111,Lorna,Werdmueller Von Elg,1/2/1890,2/3/1970
+112,George,Werdmueller Von Elg,2/1/1890,3/2/1970
+
+extras for when the program is more robust:
+0:1,Lincoln,Lawson,17/5/2005
+0:2,Zoe,Lawson,5/2/2010
+0a0,Emily,Datson,4/11/1998
+1:0,Justin,Chompff,3/7/1972

@@ -1,0 +1,130 @@
+.root {
+	-fx-font-family: "Dubai";
+	-fx-font-size: 14;
+}
+
+.unselected_box {
+	-fx-border-color: black;
+	-fx-border-radius: 4;
+	-fx-border-width: 2;
+	-fx-background-radius: 4;
+	-fx-background-color: whitesmoke;
+}
+
+.selected_box {
+	-fx-border-color: black;
+	-fx-border-radius: 4;
+	-fx-border-width: 2;
+	-fx-background-radius: 4;
+	-fx-background-color: lightsteelblue;
+}
+
+.unselected_button {
+	-fx-background-image: url(/images/elements/unselected_button.png);
+	-fx-background-size: stretch;
+	-fx-background-color: transparent;
+}
+
+.selected_button {
+	-fx-background-image: url(/images/elements/selected_button.png);
+	-fx-background-size: stretch;
+	-fx-background-color: transparent;
+}
+
+.menu {
+	-fx-background-image: url(/images/backgrounds/blue_background.jpg);
+	-fx-background-size: stretch;
+}
+
+.main_menu {
+	-fx-background-image: url(/images/backgrounds/blue_background.jpg);
+	-fx-background-size: stretch;
+}
+
+.tree_view {
+	-fx-background-image: url(/images/backgrounds/subtle_white_background.jpg);
+	-fx-background-size: stretch;
+}
+
+.vertical_line {
+	-fx-background-repeat: no-repeat no-repeat; 
+	-fx-background-size: stretch; 
+	-fx-background-image: url(/images/connectors/vertical_line.png);
+}
+
+.horizontal_line {
+	-fx-background-repeat: no-repeat no-repeat; 
+	-fx-background-size: stretch; 
+	-fx-background-image: url(/images/connectors/horizontal_line.png);
+}
+
+.lower_T {
+	-fx-background-repeat: no-repeat no-repeat; 
+	-fx-background-size: stretch; 
+	-fx-background-image: url(/images/connectors/lower_T.png);
+}
+
+.top_left_L {
+	-fx-background-repeat: no-repeat no-repeat; 
+	-fx-background-size: stretch; 
+	-fx-background-image: url(/images/connectors/top_left_L.png);
+}
+
+.top_right_L {
+	-fx-background-repeat: no-repeat no-repeat; 
+	-fx-background-size: stretch; 
+	-fx-background-image: url(/images/connectors/top_right_L.png);
+}
+
+.bottom_left_L {
+	-fx-background-repeat: no-repeat no-repeat; 
+	-fx-background-size: stretch; 
+	-fx-background-image: url(/images/connectors/bottom_left_L.png);
+}
+
+.bottom_right_L {
+	-fx-background-repeat: no-repeat no-repeat; 
+	-fx-background-size: stretch; 
+	-fx-background-image: url(/images/connectors/bottom_right_L.png);
+}
+
+.plus {
+	-fx-background-repeat: no-repeat no-repeat; 
+	-fx-background-size: stretch; 
+	-fx-background-image: url(/images/connectors/plus.png);
+}
+
+.upper_T {
+	-fx-background-repeat: no-repeat no-repeat; 
+	-fx-background-size: stretch; 
+	-fx-background-image: url(/images/connectors/upper_T.png);
+}
+
+.right_T {
+	-fx-background-repeat: no-repeat no-repeat; 
+	-fx-background-size: stretch; 
+	-fx-background-image: url(/images/connectors/right_T.png);
+}
+
+.left_T {
+	-fx-background-repeat: no-repeat no-repeat; 
+	-fx-background-size: stretch; 
+	-fx-background-image: url(/images/connectors/left_T.png);
+}
+
+.up_arrow {
+	-fx-background-repeat: no-repeat no-repeat; 
+	-fx-background-size: stretch; 
+	-fx-background-image: url(/images/connectors/up_arrow.png);
+}
+
+.down_arrow {
+	-fx-background-repeat: no-repeat no-repeat; 
+	-fx-background-size: stretch; 
+	-fx-background-image: url(/images/connectors/down_arrow.png);
+}
+
+.form {
+	-fx-background-image: url(/images/backgrounds/subtle_white_background.jpg);
+	-fx-background-size: stretch;
+}
